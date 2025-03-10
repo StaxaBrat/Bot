@@ -7,5 +7,5 @@ type: web
   startCommand: "bash start.sh"
   plan: free
   envVars:
-key: DISCORD_TOKEN
+key: DISCORD_BOT_TOKEN
     sync: false
