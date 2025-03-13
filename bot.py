@@ -20,7 +20,29 @@ intents.guilds = True
 intents.members = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+@bot.command(name="команды")
+async def команды(ctx):
+    embed = discord.Embed(title="📜 Доступні команди", color=discord.Color.blue())
+    commands_list = [
+        ("📝 !анкета", "Отримати анкету для вступу в RailTech."),
+        ("⚙️ !професія [назва]", "Дізнатися, за що відповідає певна професія."),
+        ("📋 !вакансії", "Перелік всіх доступних вакансій у RailTech."),
+        ("📜 !правила", "Переглянути основні правила RailTech."),
+        ("🔧 !статус", "Обрати статус та отримати відповідну роль.")
+    ]
+    
+    for name, desc in commands_list:
+        embed.add_field(name=name, value=desc, inline=False)
 
+    embed.set_footer(text="Використовуйте ці команди для взаємодії з ботом!")
+    await ctx.send(embed=embed)
+
+@bot.event
+async def on_ready():
+    print(f'✅ Бот {bot.user.name} запущено!')
+    print("📌 Зареєстровані команди:")
+    for command in bot.commands:
+        print(f" - {command.name}")
 
 
 @bot.event
